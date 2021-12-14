@@ -1,6 +1,8 @@
 #include "FourRow.hpp"
 
 #include <iostream>
+#include <limits>
+#include <cstdlib>
 
 FourRow::FourRow() {
   for (int i = 0; i < kRowSize_; ++i)
@@ -36,7 +38,7 @@ void FourRow::showPrompt() {
 		std::cout << std::endl << "Aborted." << std::endl;
 		std::exit(1);
 	}
-	else if (std::cin.fail() || i < 0 || kColSize_ <= i || !canPut())
+	else if (std::cin.fail() || i < 0 || kColSize_ <= i || !canPut(NOCOLOR, 0))
 	{
 		std::cout << "Invalid number." << std::endl;
 		std::cin.clear();
@@ -48,8 +50,10 @@ void FourRow::showPrompt() {
   showMap();
 }
 
-int FourRow::canPut(int color, int n) {
-
+int FourRow::canPut(eColor color, int pos) {
+  (void)color;
+  (void)pos;
+  return 1;
 }
 
 void FourRow::showMap() {
