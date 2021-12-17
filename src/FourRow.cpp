@@ -27,6 +27,7 @@ void FourRow::newGame() {
   while (true) {
     showMap();
     int pos = placePiece(turn);
+    --pos;
     put(turn, pos);
     eColor win_color = judge();
     if (win_color == WHITE) {
@@ -171,9 +172,9 @@ eColor FourRow::judge() {
 }
 
 void FourRow::showMap() {
-  for (int i = kRowSize_ - 1; i >= 0; --i) {
-    std::cout << i + 1;
-    for (int j = 0; j < kColSize_; ++j) {
+  for (int i = 0; i < kRowSize_; ++i) {
+    std::cout << kRowSize_ - i;
+    for (int j = kColSize_ - 1; j >= 0; --j) {
       if (map_[i][j] == 1)
         std::cout << " @";
       else if (map_[i][j] == 2)
