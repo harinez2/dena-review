@@ -26,7 +26,9 @@ void FourRow::newGame() {
 
   while (true) {
     showMap();
-    int pos = placePiece(turn);
+    int pos = -1;
+    while (pos == -1)
+      pos = placePiece(turn);
     --pos;
     put(turn, pos);
     eColor win_color = judge();
@@ -56,7 +58,7 @@ int FourRow::placePiece(eColor turn) {
     std::cout << std::endl << "Aborted." << std::endl;
     std::exit(1);
   }
-  else if (std::cin.fail() || input < 0 || kColSize_ <= input || !canPut(0))
+  else if (std::cin.fail() || input < 0 || kColSize_ <= input || !canPut(input - 1))
   {
     std::cout << "Invalid number." << std::endl;
     std::cin.clear();
@@ -69,7 +71,7 @@ int FourRow::placePiece(eColor turn) {
 
 bool FourRow::canPut(int pos) {
   for (int i = 0; i < kRowSize_; ++i) {
-    if (map_[pos][i] == 0)
+    if (map_[i][pos] == NOCOLOR)
       return true;
   }
   return false;
@@ -77,7 +79,7 @@ bool FourRow::canPut(int pos) {
 
 void FourRow::put(eColor color, int pos) {
   for (int i = 0; i < kRowSize_; ++i) {
-    if (map_[pos][i] == 0) {
+    if (map_[i][pos] == NOCOLOR) {
       map_[i][pos] = color;
       return;
     }
