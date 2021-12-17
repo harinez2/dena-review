@@ -7,7 +7,7 @@
 FourRow::FourRow() {
   for (int i = 0; i < kRowSize_; ++i)
     for (int j = 0; j < kColSize_; ++j)
-      map_[i][j] = 0;
+      map_[i][j] = NOCOLOR;
 }
 
 FourRow::FourRow(const FourRow& rhs) { *this = rhs; }
@@ -93,9 +93,10 @@ eColor FourRow::judgeCol() {
     for (int j = 0; j < kColSize_; ++j) {
       if (map_[i][j] == NOCOLOR)
         continue;
-      if (map_[i][j] == color) {
+      if (color == map_[i][j]) {
         ++count;
       } else {
+        color = map_[i][j];
         count = 1;
       }
       if (count >= 4)
@@ -112,9 +113,10 @@ eColor FourRow::judgeRow() {
     for (int j = 0; j < kRowSize_; ++j) {
       if (map_[i][j] == NOCOLOR)
         continue;
-      if (map_[i][j] == color) {
+      if (color == map_[i][j]) {
         ++count;
       } else {
+        color = map_[i][j];
         count = 1;
       }
       if (count >= 4)
@@ -131,9 +133,10 @@ eColor FourRow::judgeSlantRightDown() {
     for (int i2 = i, j = 0; j < kRowSize_; ++i2, ++j) {
       if (i2 < 0 || j < 0 || map_[i][j] == NOCOLOR)
         continue;
-      if (map_[i2][j] == color) {
+      if (color == map_[i2][j]) {
         ++count;
       } else {
+        color = map_[i2][j];
         count = 1;
       }
       if (count >= 4)
@@ -150,9 +153,10 @@ eColor FourRow::judgeSlantRightUp() {
     for (int i2 = i, j = 0; j < kColSize_; ++i2, ++j) {
       if (i2 < 0 || j < 0 || map_[i][j] == NOCOLOR)
         continue;
-      if (map_[i2][j] == color) {
+      if (color == map_[i2][j]) {
         ++count;
       } else {
+        color = map_[i2][j];
         count = 1;
       }
       if (count >= 4)

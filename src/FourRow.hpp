@@ -19,7 +19,7 @@ class FourRow {
  private:
   static const int kRowSize_ = 6;
   static const int kColSize_ = 7;
-  int map_[kRowSize_][kColSize_];
+  eColor map_[kRowSize_][kColSize_];
 
   int placePiece(eColor turn);
   bool canPut(int pos);
