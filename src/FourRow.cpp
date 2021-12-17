@@ -30,10 +30,10 @@ void FourRow::newGame() {
     put(turn, pos);
     eColor win_color = judge();
     if (win_color == WHITE) {
-      std::cout << "〇 win!!!" << std::endl;
+      std::cout << "WHITE win!!!" << std::endl;
       return;
     } else if (win_color == BLACK) {
-      std::cout << "● win!!!" << std::endl;
+      std::cout << "BLACK win!!!" << std::endl;
       return;
     }
   if (turn == WHITE)
@@ -45,9 +45,9 @@ void FourRow::newGame() {
 
 int FourRow::placePiece(eColor turn) {
   if (turn == WHITE)
-    std::cout << "<〇's turn> Where to put? : ";
+    std::cout << "<WHITE's turn> Where to put? : ";
   else
-    std::cout << "<●'s turn> Where to put? : ";
+    std::cout << "<BLACK's turn> Where to put? : ";
   int input;
   std::cin >> input;
   if (std::cin.bad() || std::cin.eof())
@@ -172,19 +172,20 @@ eColor FourRow::judge() {
 
 void FourRow::showMap() {
   for (int i = kRowSize_ - 1; i >= 0; --i) {
-    std::cout << i + 1 << " ";
+    std::cout << i + 1;
     for (int j = 0; j < kColSize_; ++j) {
       if (map_[i][j] == 1)
-        std::cout << "〇 ";
+        std::cout << " @";
       else if (map_[i][j] == 2)
-        std::cout << "● ";
+        std::cout << " #";
       else
-        std::cout << "   ";
+        std::cout << "  ";
     }
     std::cout << std::endl;
   }
-  std::cout << "   ";
+  std::cout << "  ";
   for (int i = 0; i < kColSize_; ++i)
-    std::cout << i + 1<< "  ";
+    std::cout << i + 1<< " ";
   std::cout << std::endl;
+  std::cout << "@:BLACK, #:WHITE" << std::endl;
 }
