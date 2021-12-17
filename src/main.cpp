@@ -19,12 +19,14 @@ int	main()
 			std::cout << std::endl;
 			std::exit(1);
 		}
-		if (cmd.compare("new") == 0)
+		if (cmd.compare("new") == 0) {
 			f.newGame();
+			break;
+		}
 		else if (cmd.compare("exit") == 0)
-			break ;
+			break;
 		else
 			std::cout << "Available commands: new, exit" << std::endl;
 	}
-	return (0);
+	return 0;
 }
