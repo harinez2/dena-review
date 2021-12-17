@@ -23,7 +23,13 @@ class FourRow {
 
   void showPrompt();
   void showMap();
-  int canPut(eColor color, int pos);
+  bool canPut(int pos);
+  void put(eColor color, int pos);
+  eColor judgeCol();
+  eColor judgeRow();
+  eColor judgeSlantRightDown();
+  eColor judgeSlantRightUp();
+  eColor judge();
 };
 
 #endif
