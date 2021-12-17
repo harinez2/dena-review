@@ -36,6 +36,10 @@ void FourRow::newGame() {
       std::cout << "● win!!!" << std::endl;
       return;
     }
+  if (turn == WHITE)
+    turn = BLACK;
+  else
+    turn = WHITE;
   }
 }
 
