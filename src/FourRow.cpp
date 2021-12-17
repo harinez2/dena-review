@@ -22,37 +22,44 @@ FourRow& FourRow::operator=(const FourRow& rhs) {
 FourRow::~FourRow() {}
 
 void FourRow::newGame() {
-  showPrompt();
+  eColor turn = WHITE;
+
+  while (true) {
+    showMap();
+    int pos = placePiece(turn);
+    put(turn, pos);
+    eColor win_color = judge();
+    if (win_color == WHITE) {
+      std::cout << "〇 win!!!" << std::endl;
+      return;
+    } else if (win_color == BLACK) {
+      std::cout << "● win!!!" << std::endl;
+      return;
+    }
+  }
 }
 
-void FourRow::showPrompt() {
-  
-  int i;
-  eColor turn = WHITE;
-  
-  showMap();
-
+int FourRow::placePiece(eColor turn) {
   if (turn == WHITE)
     std::cout << "<〇's turn> Where to put? : ";
   else
     std::cout << "<●'s turn> Where to put? : ";
-  std::cin >> i;
+  int input;
+  std::cin >> input;
   if (std::cin.bad() || std::cin.eof())
   {
     std::cout << std::endl << "Aborted." << std::endl;
     std::exit(1);
   }
-  else if (std::cin.fail() || i < 0 || kColSize_ <= i || !canPut(0))
+  else if (std::cin.fail() || input < 0 || kColSize_ <= input || !canPut(0))
   {
     std::cout << "Invalid number." << std::endl;
     std::cin.clear();
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    return ;
+    return -1;
   }
   std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-  put();
-  showMap();
+  return input;
 }
 
 bool FourRow::canPut(int pos) {

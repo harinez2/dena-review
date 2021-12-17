@@ -21,8 +21,7 @@ class FourRow {
   static const int kColSize_ = 7;
   int map_[kRowSize_][kColSize_];
 
-  void showPrompt();
-  void showMap();
+  int placePiece(eColor turn);
   bool canPut(int pos);
   void put(eColor color, int pos);
   eColor judgeCol();
@@ -30,6 +29,7 @@ class FourRow {
   eColor judgeSlantRightDown();
   eColor judgeSlantRightUp();
   eColor judge();
+  void showMap();
 };
 
 #endif
