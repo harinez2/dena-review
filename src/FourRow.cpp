@@ -68,16 +68,16 @@ int FourRow::placePiece(eColor turn) {
 }
 
 bool FourRow::canPut(int pos) {
-  for (int i = kRowSize_ - 1; i >= 0; --i) {
-    if (map_[i][pos] == 0)
+  for (int i = 0; i < kRowSize_; ++i) {
+    if (map_[pos][i] == 0)
       return true;
   }
   return false;
 }
 
 void FourRow::put(eColor color, int pos) {
-  for (int i = kRowSize_ - 1; i >= 0; --i) {
-    if (map_[i][pos] == 0) {
+  for (int i = 0; i < kRowSize_; ++i) {
+    if (map_[pos][i] == 0) {
       map_[i][pos] = color;
       return;
     }
@@ -172,12 +172,12 @@ eColor FourRow::judge() {
 }
 
 void FourRow::showMap() {
-  for (int i = 0; i < kRowSize_; ++i) {
-    std::cout << kRowSize_ - i;
-    for (int j = kColSize_ - 1; j >= 0; --j) {
-      if (map_[i][j] == 1)
+  for (int i = kRowSize_ - 1; i >= 0; --i) {
+    std::cout << i + 1;
+    for (int j = 0; j < kColSize_; ++j) {
+      if (map_[i][j] == BLACK)
         std::cout << " @";
-      else if (map_[i][j] == 2)
+      else if (map_[i][j] == WHITE)
         std::cout << " #";
       else
         std::cout << "  ";
